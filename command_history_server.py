@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from os import uname, getlogin
 from pathlib import Path
 from flask import Flask, render_template
