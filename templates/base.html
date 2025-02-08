@@ -10,9 +10,15 @@
   <h1>BASH history from {{ hostname }}:</h1>
   <ul>
   {% for command in commands %}
+    {% if command.startswith("#") %}
+    <li>
+      <h2>{{ command }}</h2>
+    </li>
+    {% else %}
     <li>
       <pre>{{ command }}</pre>
     </li>
+    {% endif %}
   {% endfor %}
   </ul>
 </body>
