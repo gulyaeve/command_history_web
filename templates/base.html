@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
   <meta charset="utf-8">
-  <title>BASH Command history</title>
+  <title>BASH history</title>
 </head>
 
 <body>
-  <h1>Welcome to bash command history from {{ hostname }}!</h1>
+  <h1>BASH history from {{ hostname }}:</h1>
   <ul>
   {% for command in commands %}
     <li>
-      <tt>{{ command }}</tt>
+      <pre>{{ command }}</pre>
     </li>
   {% endfor %}
   </ul>

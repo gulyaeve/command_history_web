@@ -1,4 +1,4 @@
-from os import uname
+from os import uname, getlogin
 from pathlib import Path
 from flask import Flask, render_template
 
@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 home_dir = Path.home()
 hostname = uname()[1]
+username = getlogin()
 
 @app.route("/")
 def home():
@@ -13,7 +14,7 @@ def home():
         commands = history.readlines()
     return render_template(
         "base.html",
-        hostname=hostname,
+        hostname=f"{username}@{hostname}",
         commands=commands,
     )
 
