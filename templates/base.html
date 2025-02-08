@@ -3,6 +3,14 @@
 <head>
   <meta charset="utf-8">
   <title>BASH Command history</title>
+  <style>  
+   li {
+    list-style-type: none; /* Убираем маркеры у списка */
+   }
+   li:before {
+    content: "$ "; /* Добавляем в качестве маркера символ */
+   }
+  </style>
 </head>
 
 <body>
@@ -10,7 +18,7 @@
   <ul>
   {% for command in commands %}
     <li>
-      <em>{{ command }}</em>
+      <tt>{{ command }}</tt>
     </li>
   {% endfor %}
   </ul>
