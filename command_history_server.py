@@ -1,9 +1,11 @@
+from os import uname
 from pathlib import Path
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
 home_dir = Path.home()
+hostname = uname()[1]
 
 @app.route("/")
 def home():
@@ -11,7 +13,7 @@ def home():
         commands = history.readlines()
     return render_template(
         "base.html",
-        title="Jinja and Flask",
+        hostname=hostname,
         commands=commands,
     )
 
