@@ -7,19 +7,49 @@
 </head>
 
 <body>
-  <h1>BASH history from {{ hostname }}:</h1>
-  <ul>
-  {% for command in commands %}
-    {% if command.startswith("#") %}
-    <li>
-      <h2>{{ command }}</h2>
-    </li>
-    {% else %}
-    <li>
-      <pre>{{ command }}</pre>
-    </li>
-    {% endif %}
-  {% endfor %}
-  </ul>
+  <main>
+    <h1>BASH history from {{ hostname }}:</h1>
+    {% for command in commands %}
+      {% if command.startswith("#") %}
+        <h2>{{ command }}</h2>
+      {% else %}
+        <pre><code class="language-shell">{{ command.rstrip() }}</code></pre>
+      {% endif %}
+    {% endfor %}
+  </main>
+  <script>
+    const copyButtonLabel = "Copy Code";
+
+    // only pre elements that have a code as a child
+    let blocks = document.querySelectorAll("pre:has(code)");
+
+    blocks.forEach((block) => {
+      // only add button if browser supports Clipboard API
+      if (navigator.clipboard) {
+        let button = document.createElement("button");
+
+        button.innerText = copyButtonLabel;
+        block.appendChild(button);
+
+        button.addEventListener("click", async () => {
+          await copyCode(block, button);
+        });
+      }
+    });
+
+    async function copyCode(block, button) {
+      let code = block.querySelector("code");
+      let text = code.innerText;
+
+      await navigator.clipboard.writeText(text);
+
+      // visual feedback that task is completed
+      button.innerText = "Code Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  </script>
 </body>
 </html>
