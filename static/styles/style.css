@@ -27,7 +27,7 @@ pre:has(code) {
 
   /* make space  */
   margin: 5px 0;
-  /* padding: 1.75rem 0 1.75rem 1rem; */
+  padding: 1.75rem 0 1.75rem 1rem;
   border-radius: 10px;
 }
 
