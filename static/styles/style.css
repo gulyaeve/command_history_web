@@ -65,6 +65,11 @@ main {
 
 h1 {
   font-size: 1.3rem;
+  font-family: sans-serif;
+}
+
+.centered {
+  text-align: center;
 }
 
 h2 {
